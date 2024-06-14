@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "329334773970",
+    "project_id": "accimap-6df8b",
+    "storage_bucket": "accimap-6df8b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:329334773970:android:197c08acaaffaaa3de350b",
+        "android_client_info": {
+          "package_name": "com.example.accimap"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCijmPAeerzbOakRcsJW3GBQRQeY-1r5fE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

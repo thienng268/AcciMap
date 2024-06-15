@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="500dp"
-    android:background="@drawable/popup_bg"
+
     android:orientation="vertical"
     android:paddingTop="10dp">
 
@@ -15,7 +15,7 @@
         android:layout_gravity="end"
         android:layout_marginEnd="10dp"
         android:background="@android:color/transparent"
-        app:srcCompat="@drawable/cancel_button" />
+         />
     <ImageButton
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -48,7 +48,7 @@
             android:inputType="number"
             android:textColor="@color/darkbrown"
             android:paddingLeft="10dp"
-            android:background="@drawable/edittext_checkinout" />
+            />
 
     </LinearLayout>
 
@@ -83,7 +83,7 @@
         android:layout_height="35dp"
         android:layout_gravity="center"
         android:layout_marginTop="25dp"
-        android:background="@drawable/rectangle_search"
+        
         android:fontFamily="@font/librefranklinmedium"
         android:text="Đăng"
         android:textAllCaps="false"

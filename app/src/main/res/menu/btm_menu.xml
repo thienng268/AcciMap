@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item android:title="Bản đồ"
+        android:icon="@drawable/outline_map_24"
+        android:id="@+id/home"/>
+
+    <item android:title="Tình trạng"
+        android:icon="@drawable/sharp_crisis_alert_24"
+        android:id="@+id/crisis"/>
+
+    <item android:title="Gần bạn"
+        android:icon="@drawable/outline_explore_nearby_24"
+        android:id="@+id/nearby"/>
+
+    <item android:title="Hồ sơ"
+        android:id="@+id/profile"
+        android:icon="@drawable/outline_account_circle_24"/>
 </menu>

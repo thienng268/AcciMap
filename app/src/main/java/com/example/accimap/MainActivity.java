@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //login();
-                Intent intent = new Intent(getApplicationContext(), Accident.class);
+                Intent intent = new Intent(getApplicationContext(), Home.class);
                 startActivity(intent);
                 finish();
             }

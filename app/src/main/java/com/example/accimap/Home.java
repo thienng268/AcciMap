@@ -27,7 +27,7 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.fragment_home);
         Toast.makeText(Home.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
         FirebaseApp.initializeApp(this);
         database = FirebaseDatabase.getInstance();

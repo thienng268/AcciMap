@@ -22,9 +22,13 @@ public class MapsFragment extends Fragment {
 
         @Override
         public void onMapReady(GoogleMap googleMap) {
-            LatLng sydney = new LatLng(-34, 151);
-            googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-            googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+            // Coordinates for Ho Chi Minh City
+            LatLng hoChiMinhCity = new LatLng(10.776889, 106.700806);
+            googleMap.addMarker(new MarkerOptions().position(hoChiMinhCity).title("Marker in Ho Chi Minh City"));
+
+            // Zoom level 12.0f is a city view
+            float zoomLevel = 12.0f;
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hoChiMinhCity, zoomLevel));
         }
     };
 

@@ -1,7 +1,10 @@
 package com.example.accimap;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -62,6 +65,16 @@ public class Accident extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(Accident.this, "Failed to load data", Toast.LENGTH_SHORT).show();
                 Log.e("Accident", "Failed to load data: " + error.getMessage());
+            }
+        });
+        ImageView imageViewBack = findViewById(R.id.imageViewBack);
+        imageViewBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate back to HomeActivity
+                Intent intent = new Intent(Accident.this, Home.class);
+                startActivity(intent);
+                finish(); // Finish current activity
             }
         });
     }

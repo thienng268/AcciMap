@@ -29,7 +29,6 @@
         <activity android:name=".LoginActivity" android:exported="false"> </activity>
         <activity android:name=".Home" android:exported="false"> </activity>
         <activity android:name=".Accident"> </activity>
-        <activity android:name=".MainPage"></activity>
     </application>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>

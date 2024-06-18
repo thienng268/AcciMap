@@ -1,9 +1,12 @@
 package com.example.accimap;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -15,6 +18,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.accimap.models.Report;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -24,10 +28,11 @@ public class Home extends AppCompatActivity {
     ImageButton newAccidentButton;
     FirebaseDatabase database;
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_home);
+        setContentView(R.layout.activity_main);
         Toast.makeText(Home.this, "Đăng nhập thành công", Toast.LENGTH_SHORT).show();
         FirebaseApp.initializeApp(this);
         database = FirebaseDatabase.getInstance();
@@ -40,6 +45,26 @@ public class Home extends AppCompatActivity {
                 showAddAccidentDialog();
             }
         });
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.btmmenu);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                int itemId = item.getItemId();
+                if (itemId == R.id.home) {
+                    // Xử lý khi nhấn vào mục "Bản đồ"
+                    // Đưa ra các hoạt động cần thực hiện khi nhấn vào "Bản đồ"
+                    return true;
+                } else if (itemId == R.id.crisis) {
+                    // Xử lý khi nhấn vào mục "Tình trạng"
+                    Intent intent = new Intent(Home.this, Accident.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
 
     private void showAddAccidentDialog() {

@@ -66,12 +66,12 @@ public class HomeFragment extends Fragment {
             String distance = distanceEditText.getText().toString().trim();
             String status = statusEditText.getText().toString().trim();
 
-            Report report = new Report(title, status, updateTime, distance, "Report003");
+            //Report report = new Report(title, status, updateTime, distance, "Report003");
 
-            DatabaseReference reportsRef = database.getReference("Report");
-            reportsRef.push().setValue(report)
-                    .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), "Đã thêm báo cáo thành công", Toast.LENGTH_SHORT).show())
-                    .addOnFailureListener(e -> Toast.makeText(requireContext(), "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+            //DatabaseReference reportsRef = database.getReference("Report");
+            //reportsRef.push().setValue(report)
+            //        .addOnSuccessListener(aVoid -> Toast.makeText(requireContext(), "Đã thêm báo cáo thành công", Toast.LENGTH_SHORT).show())
+            //        .addOnFailureListener(e -> Toast.makeText(requireContext(), "Lỗi: " + e.getMessage(), Toast.LENGTH_SHORT).show());
         });
 
         builder.setNegativeButton("Hủy", (dialog, which) -> dialog.dismiss());

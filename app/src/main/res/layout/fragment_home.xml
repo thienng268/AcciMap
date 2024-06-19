@@ -6,45 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".HomeFragment">
 
-
-
-    <SearchView
+    <fragment
+        android:id="@+id/map"
+        class="com.example.accimap.MapsFragment"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="18dp"
-        android:elevation="5dp"
-        android:iconifiedByDefault="false"
-        android:background="@color/colorWhite"
-        android:queryHint="Tìm kiếm"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></SearchView>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-16dp"
+        tools:layout_editor_absoluteY="-40dp" />
 
-        <fragment
-            android:id="@+id/map"
-            class="com.example.accimap.MapsFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="-16dp"
-            tools:layout_editor_absoluteY="-40dp"></fragment>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/newacci"
-            android:layout_marginTop="580dp"
-            android:layout_gravity="end"
-            android:layout_marginEnd="10dp"
-            app:srcCompat="@drawable/outline_add_a_photo_24"
-            android:padding="20dp"
-            android:background="@drawable/ovalbutton"
-            app:layout_constraintStart_toStartOf="parent"
-
-            ></ImageButton>
-    </FrameLayout>
-
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newacci"
+        android:layout_marginTop="480dp"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10dp"
+        app:srcCompat="@drawable/outline_add_a_photo_24"
+        android:padding="20dp"
+        android:background="@drawable/ovalbutton" />
 
 </FrameLayout>

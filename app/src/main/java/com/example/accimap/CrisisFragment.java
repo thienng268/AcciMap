@@ -3,12 +3,15 @@ package com.example.accimap;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,24 +27,34 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Accident extends AppCompatActivity {
+public class CrisisFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private AccidentAdapter adapter;
     private List<Report> accidentList;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_accident);
+    public CrisisFragment() {
+        // Required empty public constructor
+    }
 
-        recyclerView = findViewById(R.id.recyclerview);
-        accidentList = new ArrayList<Report>();
-        adapter = new AccidentAdapter(accidentList, this);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recyclerView.setAdapter(adapter);
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_crisis, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = view.findViewById(R.id.recyclerview);
+        accidentList = new ArrayList<>();
+        adapter = new AccidentAdapter(accidentList, getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
-        FirebaseApp.initializeApp(this);
+        recyclerView.setAdapter(adapter);
+        FirebaseApp.initializeApp(getContext());
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Report");
 
@@ -51,11 +64,10 @@ public class Accident extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Report report = dataSnapshot.getValue(Report.class);
                     if (report != null) {
-                        Toast.makeText(Accident.this, "Report: " + report.getTitle(), Toast.LENGTH_SHORT).show();
-                        Log.d("Accident", "Report: " + report.getTitle());
+                        Toast.makeText(getContext(), "Report: " + report.getTitle(), Toast.LENGTH_SHORT).show();
                         accidentList.add(report);
                     } else {
-                        Toast.makeText(Accident.this, "Report: is null", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Report: is null", Toast.LENGTH_SHORT).show();
                     }
                 }
                 adapter.notifyDataSetChanged();
@@ -63,18 +75,8 @@ public class Accident extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Accident.this, "Failed to load data", Toast.LENGTH_SHORT).show();
-                Log.e("Accident", "Failed to load data: " + error.getMessage());
-            }
-        });
-        ImageView imageViewBack = findViewById(R.id.imageViewBack);
-        imageViewBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate back to HomeActivity
-                Intent intent = new Intent(Accident.this, Home.class);
-                startActivity(intent);
-                finish(); // Finish current activity
+                Toast.makeText(getContext(), "Failed to load data", Toast.LENGTH_SHORT).show();
+                Log.e("CrisisFragment", "Failed to load data: " + error.getMessage());
             }
         });
     }

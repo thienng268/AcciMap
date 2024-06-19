@@ -36,10 +36,10 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Report accident = accidentList.get(position);
 
-        holder.titleTextView.setText(accident.getTitle());
-        holder.statusTextView.setText(accident.getStatus());
-        holder.updateTimeTextView.setText(accident.getUpdateTime());
-        holder.distanceTextView.setText(accident.getDistance());
+        //holder.titleTextView.setText(accident.getTitle());
+        //holder.statusTextView.setText(accident.getStatus());
+        //holder.updateTimeTextView.setText(accident.getUpdateTime());
+        //holder.distanceTextView.setText(accident.getDistance());
     }
 
 

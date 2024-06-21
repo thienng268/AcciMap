@@ -8,4 +8,7 @@
     <item android:title="Tình trạng"
         android:icon="@drawable/sharp_crisis_alert_24"
         android:id="@+id/crisis"/>
+    <item android:title="Cá nhân"
+        android:id="@+id/profile"
+        android:icon="@drawable/outline_account_circle_24"/>
 </menu>

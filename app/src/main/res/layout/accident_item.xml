@@ -13,43 +13,44 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/librefranklinbold"
             android:text="Ly Chinh Thang, Quan 3, Ho Chi Minh"
-            android:textSize="20dp">
-            </TextView>
+            android:textSize="20dp"></TextView>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
-                android:id="@+id/imgacci"
-                android:layout_width="160dp"
-                android:layout_height="160dp"
-                android:layout_marginLeft="20dp"
-                android:src="@drawable/default_image"></ImageView>
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
                 android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="80dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:fontFamily="@font/librefranklinbold"
-                    android:text="Tình trạng"></TextView>
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="3dp"
+                        android:fontFamily="@font/librefranklinbold"
+                        android:text="Mức độ"></TextView>
 
-                <TextView
-                    android:id="@+id/status"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="4dp"
-                    android:text="Ngap lut, bao, tat duong, tai nan xe"></TextView>
+                    <TextView
+                        android:id="@+id/status"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="4dp"
+                        android:text="Nặng"></TextView>
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -57,14 +58,10 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp">
 
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/round_access_time_24"></ImageView>
-
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="3dp"
                         android:fontFamily="@font/librefranklinbold"
                         android:text="Cap nhat:"></TextView>
@@ -75,7 +72,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:layout_marginTop="3dp"
-                        android:text="1h30m p.m"
+                        android:text="21/06/2024"
 
                         ></TextView>
                 </LinearLayout>
@@ -84,27 +81,45 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp">
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/rounded_location_on_24"></ImageView>
-
+                    android:layout_marginTop="10dp"
+                    >
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="120dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="3dp"
                         android:fontFamily="@font/librefranklinbold"
-                        android:text="Khoang cach:"></TextView>
+                        android:text="Số người chết"></TextView>
 
                     <TextView
-                        android:id="@+id/distance"
+                        android:id="@+id/songuoichet"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="13dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="4dp"
+                        android:text="5"></TextView>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    >
+                    <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="3dp"
-                        android:text="20km"></TextView>
+                        android:fontFamily="@font/librefranklinbold"
+                        android:text="Số người chết"></TextView>
+
+                    <TextView
+                        android:id="@+id/songuoibithuong"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="4dp"
+                        android:text="20"></TextView>
                 </LinearLayout>
 
             </LinearLayout>

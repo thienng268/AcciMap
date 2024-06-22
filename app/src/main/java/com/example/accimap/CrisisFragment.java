@@ -64,7 +64,7 @@ public class CrisisFragment extends Fragment {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Report report = dataSnapshot.getValue(Report.class);
                     if (report != null) {
-                        Toast.makeText(getContext(), "Report: " + report.getTitle(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "Report: " + report.getTitle(), Toast.LENGTH_SHORT).show();
                         accidentList.add(report);
                     } else {
                         Toast.makeText(getContext(), "Report: is null", Toast.LENGTH_SHORT).show();

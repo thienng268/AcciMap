@@ -1,21 +1,20 @@
 package com.example.accimap.models;
 
-import java.text.DecimalFormat;
-
 public class Report {
     public String rId;
     public String mucdo;
     public String tentainan;
     public String ngaygio;
-    public Number songuoichet;
-    public Number songuoibithuong;
-    public Number kinhdo;
-    public Number vido;
+    public int songuoichet;
+    public int songuoibithuong;
+    public Double kinhdo;
+    public Double vido;
 
     public Report() {
         // Default constructor required for calls to DataSnapshot.getValue(Report.class)
     }
-    public Report(String mucdo, String tentainan, String ngaygio, Number songuoichet,Number songuoibithuong, Number kinhdo, Number vido, String rId) {
+
+    public Report(String mucdo, String tentainan, String ngaygio, int songuoichet, int songuoibithuong, Double kinhdo, Double vido, String rId) {
         this.mucdo = mucdo;
         this.tentainan = tentainan;
         this.ngaygio = ngaygio;
@@ -33,6 +32,7 @@ public class Report {
     public void setrId(String rId) {
         this.rId = rId;
     }
+
     public String getMucdo() {
         return mucdo;
     }
@@ -40,6 +40,7 @@ public class Report {
     public void setMucdo(String mucdo) {
         this.mucdo = mucdo;
     }
+
     public String getTentainan() {
         return tentainan;
     }
@@ -47,6 +48,7 @@ public class Report {
     public void setTentainan(String tentainan) {
         this.tentainan = tentainan;
     }
+
     public String getNgaygio() {
         return ngaygio;
     }
@@ -54,33 +56,36 @@ public class Report {
     public void setNgaygio(String ngaygio) {
         this.ngaygio = ngaygio;
     }
-    public Number getSonguoichet() {
+
+    public int getSonguoichet() {
         return songuoichet;
     }
 
-    public void setSonguoichet(Number songuoichet) {
+    public void setSonguoichet(int songuoichet) {
         this.songuoichet = songuoichet;
     }
-    public Number getSonguoibithuong() {
+
+    public int getSonguoibithuong() {
         return songuoibithuong;
     }
 
-    public void setSonguoibithuong(Number songuoibithuong) {
+    public void setSonguoibithuong(int songuoibithuong) {
         this.songuoibithuong = songuoibithuong;
     }
-    public Number getKinhdo() {
+
+    public Double getKinhdo() {
         return kinhdo;
     }
 
-    public void setKinhdo(Number kinhdo) {
+    public void setKinhdo(Double kinhdo) {
         this.kinhdo = kinhdo;
     }
-    public Number getVido() {
+
+    public Double getVido() {
         return vido;
     }
 
-    public void setVido(Number vido) {
+    public void setVido(Double vido) {
         this.vido = vido;
     }
-
 }

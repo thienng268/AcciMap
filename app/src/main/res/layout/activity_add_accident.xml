@@ -30,14 +30,13 @@
         android:text="Thời gian:"
         android:textSize="20sp" />
 
-    <EditText
+    <TextView
         android:id="@+id/editTextUpdateTime"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:hint="Nhập thời gian"
+        android:hint="21/06/2024"
         android:textColor="@android:color/black"
         android:textSize="18sp"/>
 
@@ -48,14 +47,13 @@
         android:text="Khoảng cách:"
         android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/editTextDistance"
+    <TextView
+        android:id="@+id/viewToado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:hint="Nhập khoảng cách"
+        android:hint="(108, 120)"
         android:textColor="@android:color/black"
         android:textSize="18sp"/>
 
@@ -63,7 +61,7 @@
         android:id="@+id/textViewStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tình trạng:"
+        android:text="Mức độ:"
         android:textSize="20sp" />
 
     <EditText
@@ -73,8 +71,41 @@
         android:inputType="text"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
-        android:hint="Nhập tình trạng"
+        android:hint="Nhập mức độ"
         android:textColor="@android:color/black"
         android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/textNguoibithuong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số người bị thương:"
+        android:textSize="20sp" />
 
+    <EditText
+        android:id="@+id/editNguoibithuong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Nhập số người bị thương"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
+    <TextView
+        android:id="@+id/textNguoichet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Số người thương vong:"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/editNguoichet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:hint="Nhập số người thương vong"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
 </LinearLayout>

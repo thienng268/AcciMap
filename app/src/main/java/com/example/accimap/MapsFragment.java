@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -18,6 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,11 +28,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.example.accimap.models.Report;
+import com.squareup.picasso.Picasso;
 
 public class MapsFragment extends Fragment {
 
     private static final String TAG = "MapsFragment";
     private GoogleMap mMap;
+    private View infoWindowView;
+    private TextView infoTitle;
+    private ImageView infoImage;
 
     private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
@@ -38,35 +45,61 @@ public class MapsFragment extends Fragment {
             mMap = googleMap;
             mMap.getUiSettings().setZoomControlsEnabled(true);
 
-            // Tạo LatLng cho Hồ Chí Minh City
+            // Move camera to default location
             LatLng hoChiMinhCity = new LatLng(10.776889, 106.700806);
+            float zoomLevel = 12.0f; // Zoom level as needed
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hoChiMinhCity, zoomLevel));
 
-            // Đặt LatLngBounds cho khu vực rộng hơn bao gồm Hồ Chí Minh
-            LatLngBounds hoChiMinhBounds = new LatLngBounds(
-                    new LatLng(10.0, 105.0), // Southwest corner
-                    new LatLng(11.0, 107.0)  // Northeast corner
-            );
+            // Set custom info window adapter
+            mMap.setInfoWindowAdapter(new GoogleMap.InfoWindowAdapter() {
+                @Override
+                public View getInfoWindow(Marker marker) {
+                    return null; // Use getInfoContents to customize view
+                }
 
-            // Sử dụng ViewTreeObserver để đảm bảo rằng bản đồ đã được bố cục trước khi di chuyển camera
-            View mapView = getChildFragmentManager().findFragmentById(R.id.map).getView();
-            if (mapView != null) {
-                mapView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
-                    @Override
-                    public void onGlobalLayout() {
-                        mapView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
-
-                        // Di chuyển camera để hiển thị khu vực rộng hơn
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(hoChiMinhBounds, 0));
-
-                        // Sau đó zoom vào khu vực Hồ Chí Minh
-                        float zoomLevel = 12.0f; // Mức zoom cho phù hợp với yêu cầu của bạn
-                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hoChiMinhCity, zoomLevel));
-
-                        // Thêm các marker từ Firebase
-                        fetchAndDisplayMarkers(mMap);
+                @Override
+                public View getInfoContents(Marker marker) {
+                    // Inflate custom_info_window layout
+                    if (infoWindowView == null) {
+                        infoWindowView = getLayoutInflater().inflate(R.layout.custom_info_window, null);
                     }
-                });
-            }
+
+                    // Bind views in info window layout
+                    infoTitle = infoWindowView.findViewById(R.id.info_title);
+                    infoImage = infoWindowView.findViewById(R.id.info_image);
+
+                    // Get information from marker and display in info window
+                    Report report = (Report) marker.getTag();
+                    if (report != null) {
+                        infoTitle.setText(report.getTentainan());
+                        String imageUrl = report.getImage();
+                        if (imageUrl != null && !imageUrl.isEmpty()) {
+                            Picasso.get().load(imageUrl).into(infoImage, new com.squareup.picasso.Callback() {
+                                @Override
+                                public void onSuccess() {
+                                    Log.d(TAG, "Image loaded successfully");
+                                }
+
+                                @Override
+                                public void onError(Exception e) {
+                                    Log.d(TAG, "Error loading image: " + e.getMessage());
+                                    infoImage.setImageResource(R.drawable.default_image);
+                                }
+                            });
+                        } else {
+                            infoImage.setImageResource(R.drawable.default_image);
+                        }
+                    } else {
+                        Log.d(TAG, "Report is null");
+                    }
+
+                    return infoWindowView;
+                }
+            });
+
+
+            // Add markers from Firebase
+            fetchAndDisplayMarkers();
         }
     };
 
@@ -84,34 +117,36 @@ public class MapsFragment extends Fragment {
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
-            mapFragment.getMapAsync(callback);
+            // Wait until map layout is complete before calling getMapAsync
+            mapFragment.getView().getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    mapFragment.getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
+                    mapFragment.getMapAsync(callback);
+                }
+            });
         }
     }
 
-    private void fetchAndDisplayMarkers(GoogleMap mMap) {
+    private void fetchAndDisplayMarkers() {
         DatabaseReference reportsRef = FirebaseDatabase.getInstance().getReference("Report");
         reportsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.d(TAG, "DataSnapshot received");
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Report report = snapshot.getValue(Report.class);
                     if (report != null) {
-                        Number vido = report.getVido();
-                        Number kinhdo = report.getKinhdo();
-                        String tentainan = report.getTentainan();
+                        double latitude = report.getVido().doubleValue();
+                        double longitude = report.getKinhdo().doubleValue();
+                        String title = report.getTentainan();
+                        String imageUrl = report.getImage();
 
-                        if (vido != null && kinhdo != null) {
-                            LatLng location = new LatLng(vido.doubleValue(), kinhdo.doubleValue());
-                            mMap.addMarker(new MarkerOptions()
-                                    .position(location)
-                                    .title(tentainan != null ? tentainan : "No Title"));
-                            Log.d(TAG, "Added marker: " + location.toString());
-                        } else {
-                            Log.d(TAG, "Invalid latitude or longitude");
-                        }
-                    } else {
-                        Log.d(TAG, "Report is null");
+                        LatLng location = new LatLng(latitude, longitude);
+                        Marker marker = mMap.addMarker(new MarkerOptions()
+                                .position(location)
+                                .title(title != null ? title : "No Title"));
+
+                        marker.setTag(report); // Store Report object in marker's tag
                     }
                 }
             }
@@ -128,4 +163,3 @@ public class MapsFragment extends Fragment {
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 }
-

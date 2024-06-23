@@ -56,5 +56,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-firestore:24.0.0'
     implementation "androidx.databinding:databinding-runtime:7.0.0"
     implementation 'com.google.firebase:firebase-core:21.1.1'
+    implementation 'com.google.firebase:firebase-storage'
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
 }
 apply plugin: 'com.google.gms.google-services'

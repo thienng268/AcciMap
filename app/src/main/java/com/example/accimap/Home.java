@@ -35,11 +35,22 @@ public class Home extends AppCompatActivity {
                 } else if (itemId == R.id.crisis) {
                     selectedFragment = new CrisisFragment();
                 }
+                else if (itemId == R.id.profile) {
+                    selectedFragment = new ProfileFragment();
+                }
                 getSupportFragmentManager().beginTransaction()
                         .replace(R.id.frame_layout, selectedFragment)
                         .commit();
                 return true;
             }
         });
+    }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        HomeFragment fragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.home);
+        if (fragment != null) {
+            fragment.handlePermissionsResult(requestCode, permissions, grantResults);
+        }
     }
 }

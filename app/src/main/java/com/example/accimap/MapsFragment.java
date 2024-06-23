@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -46,15 +47,26 @@ public class MapsFragment extends Fragment {
                     new LatLng(11.0, 107.0)  // Northeast corner
             );
 
-            // Di chuyển camera để hiển thị khu vực rộng hơn
-            mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(hoChiMinhBounds, 0));
+            // Sử dụng ViewTreeObserver để đảm bảo rằng bản đồ đã được bố cục trước khi di chuyển camera
+            View mapView = getChildFragmentManager().findFragmentById(R.id.map).getView();
+            if (mapView != null) {
+                mapView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                    @Override
+                    public void onGlobalLayout() {
+                        mapView.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
-            // Sau đó zoom vào khu vực Hồ Chí Minh
-            float zoomLevel = 12.0f; // Mức zoom cho phù hợp với yêu cầu của bạn
-            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hoChiMinhCity, zoomLevel));
+                        // Di chuyển camera để hiển thị khu vực rộng hơn
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(hoChiMinhBounds, 0));
 
-            // Thêm các marker từ Firebase
-            fetchAndDisplayMarkers(mMap);
+                        // Sau đó zoom vào khu vực Hồ Chí Minh
+                        float zoomLevel = 12.0f; // Mức zoom cho phù hợp với yêu cầu của bạn
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(hoChiMinhCity, zoomLevel));
+
+                        // Thêm các marker từ Firebase
+                        fetchAndDisplayMarkers(mMap);
+                    }
+                });
+            }
         }
     };
 
@@ -116,3 +128,4 @@ public class MapsFragment extends Fragment {
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
     }
 }
+

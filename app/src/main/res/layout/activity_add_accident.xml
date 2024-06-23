@@ -40,22 +40,41 @@
         android:textColor="@android:color/black"
         android:textSize="18sp"/>
 
-    <TextView
-        android:id="@+id/textViewDistance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Khoảng cách:"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/viewToado"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:hint="(108, 120)"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"/>
+        android:layout_marginBottom="16dp">
+
+        <TextView
+            android:id="@+id/textViewCoordinates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tọa độ:"
+            android:textSize="20sp"
+            android:layout_gravity="center_vertical"/>
+
+        <TextView
+            android:id="@+id/viewKinhDo"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="4dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/viewVido"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="8dp"
+            android:textColor="@android:color/black"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewStatus"
@@ -74,6 +93,7 @@
         android:hint="Nhập mức độ"
         android:textColor="@android:color/black"
         android:textSize="18sp"/>
+
     <TextView
         android:id="@+id/textNguoibithuong"
         android:layout_width="wrap_content"
@@ -85,12 +105,13 @@
         android:id="@+id/editNguoibithuong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="number"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:hint="Nhập số người bị thương"
         android:textColor="@android:color/black"
         android:textSize="18sp"/>
+
     <TextView
         android:id="@+id/textNguoichet"
         android:layout_width="wrap_content"
@@ -102,10 +123,16 @@
         android:id="@+id/editNguoichet"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text"
+        android:inputType="number"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="16dp"
         android:hint="Nhập số người thương vong"
         android:textColor="@android:color/black"
         android:textSize="18sp"/>
+    <ImageButton
+        android:id="@+id/imgacci"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginLeft="120dp"
+        android:src="@drawable/default_image"></ImageButton>
 </LinearLayout>

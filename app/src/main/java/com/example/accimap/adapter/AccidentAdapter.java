@@ -36,11 +36,13 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Report accident = accidentList.get(position);
 
-        //holder.titleTextView.setText(accident.getTitle());
-        //holder.statusTextView.setText(accident.getStatus());
-        //holder.updateTimeTextView.setText(accident.getUpdateTime());
-        //holder.distanceTextView.setText(accident.getDistance());
+        holder.titleTextView.setText(accident.getTentainan());
+        holder.statusTextView.setText(accident.getMucdo());
+        holder.updateTimeTextView.setText(accident.getNgaygio());
+        holder.numberOfDeadTextView.setText(String.valueOf(accident.getSonguoichet()));
+        holder.numberOfInjuredTextView.setText(String.valueOf(accident.getSonguoibithuong()));
     }
+
 
 
     @Override
@@ -52,7 +54,8 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
         public TextView titleTextView;
         public TextView statusTextView;
         public TextView updateTimeTextView;
-        public TextView distanceTextView;
+        public TextView numberOfDeadTextView;
+        public TextView numberOfInjuredTextView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -60,7 +63,9 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
             titleTextView = itemView.findViewById(R.id.title);
             statusTextView = itemView.findViewById(R.id.status);
             updateTimeTextView = itemView.findViewById(R.id.time_update);
-            distanceTextView = itemView.findViewById(R.id.distance);
+            numberOfDeadTextView = itemView.findViewById(R.id.songuoichet);
+            numberOfInjuredTextView = itemView.findViewById(R.id.songuoibithuong);
         }
     }
+
 }

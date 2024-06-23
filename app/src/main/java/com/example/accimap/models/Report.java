@@ -14,12 +14,12 @@ public class Report {
         // Default constructor required for calls to DataSnapshot.getValue(Report.class)
     }
 
-    public Report(String mucdo, String tentainan, String ngaygio, int songuoichet, int songuoibithuong, Double kinhdo, Double vido, String rId) {
-        this.mucdo = mucdo;
+    public Report(String tentainan, String ngaygio, String mucdo, int songuoibithuong, int songuoichet, Double kinhdo, Double vido, String rId) {
         this.tentainan = tentainan;
         this.ngaygio = ngaygio;
-        this.songuoichet = songuoichet;
+        this.mucdo = mucdo;
         this.songuoibithuong = songuoibithuong;
+        this.songuoichet = songuoichet;
         this.kinhdo = kinhdo;
         this.vido = vido;
         this.rId = rId;

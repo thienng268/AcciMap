@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.accimap.models.Report;
 import com.example.accimap.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -41,6 +43,7 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
         holder.updateTimeTextView.setText(accident.getNgaygio());
         holder.numberOfDeadTextView.setText(String.valueOf(accident.getSonguoichet()));
         holder.numberOfInjuredTextView.setText(String.valueOf(accident.getSonguoibithuong()));
+        Picasso.get().load(accident.getImage()).into(holder.imageView);
     }
 
 
@@ -56,6 +59,7 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
         public TextView updateTimeTextView;
         public TextView numberOfDeadTextView;
         public TextView numberOfInjuredTextView;
+        public ImageView imageView;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -65,6 +69,7 @@ public class AccidentAdapter extends RecyclerView.Adapter<AccidentAdapter.ViewHo
             updateTimeTextView = itemView.findViewById(R.id.time_update);
             numberOfDeadTextView = itemView.findViewById(R.id.songuoichet);
             numberOfInjuredTextView = itemView.findViewById(R.id.songuoibithuong);
+            imageView = itemView.findViewById(R.id.imgacci);
         }
     }
 

@@ -9,6 +9,7 @@ public class Report {
     public int songuoibithuong;
     public Double kinhdo;
     public Double vido;
+    public String image;
 
     public Report() {
         // Default constructor required for calls to DataSnapshot.getValue(Report.class)
@@ -39,6 +40,13 @@ public class Report {
 
     public void setMucdo(String mucdo) {
         this.mucdo = mucdo;
+    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getTentainan() {

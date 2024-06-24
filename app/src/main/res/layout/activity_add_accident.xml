@@ -1,138 +1,146 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
-
-    <TextView
-        android:id="@+id/textViewTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tiêu đề:"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/editTextTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:hint="Nhập tiêu đề"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/textViewUpdateTime"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Thời gian:"
-        android:textSize="20sp" />
-
-    <TextView
-        android:id="@+id/editTextUpdateTime"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:hint="21/06/2024"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"/>
+    android:layout_height="wrap_content">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp">
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <TextView
-            android:id="@+id/textViewCoordinates"
+            android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tọa độ:"
-            android:textSize="20sp"
-            android:layout_gravity="center_vertical"/>
+            android:text="Tiêu đề:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Nhập tiêu đề"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/viewKinhDo"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:id="@+id/textViewUpdateTime"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="4dp"
-            android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:text="Thời gian:"
+            android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/viewVido"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:id="@+id/editTextUpdateTime"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:hint="21/06/2024"
             android:textColor="@android:color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/textViewCoordinates"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tọa độ:"
+                android:textSize="20sp"
+                android:layout_gravity="center_vertical"/>
+
+            <TextView
+                android:id="@+id/viewKinhDo"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="4dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/viewVido"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="8dp"
+                android:textColor="@android:color/black"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/textViewStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mức độ:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editTextStatus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Nhập mức độ"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/textNguoibithuong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số người bị thương:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editNguoibithuong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Nhập số người bị thương"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:id="@+id/textNguoichet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Số người thương vong:"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/editNguoichet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:hint="Nhập số người thương vong"
+            android:textColor="@android:color/black"
+            android:textSize="18sp"/>
+
+        <ImageButton
+            android:id="@+id/imgacci"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="120dp"
+            android:src="@drawable/default_image" />
+
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/textViewStatus"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mức độ:"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/editTextStatus"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="text"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:hint="Nhập mức độ"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/textNguoibithuong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Số người bị thương:"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/editNguoibithuong"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:hint="Nhập số người bị thương"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"/>
-
-    <TextView
-        android:id="@+id/textNguoichet"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Số người thương vong:"
-        android:textSize="20sp" />
-
-    <EditText
-        android:id="@+id/editNguoichet"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        android:hint="Nhập số người thương vong"
-        android:textColor="@android:color/black"
-        android:textSize="18sp"/>
-    <ImageButton
-        android:id="@+id/imgacci"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginLeft="120dp"
-        android:src="@drawable/default_image"></ImageButton>
-</LinearLayout>
+</ScrollView>

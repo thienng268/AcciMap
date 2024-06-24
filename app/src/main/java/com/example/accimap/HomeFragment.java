@@ -2,8 +2,10 @@ package com.example.accimap;
 
 import android.Manifest;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -61,7 +63,27 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // Yêu cầu quyền truy cập vị trí nếu chưa được cấp
+        if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED ||
+                ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(requireActivity(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
+                    LOCATION_PERMISSION_REQUEST_CODE);
+        }
+
         return view;
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getLocation();
+            } else {
+                Toast.makeText(requireContext(), "Quyền truy cập vị trí bị từ chối", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     private void showAddAccidentDialog() {
@@ -75,6 +97,7 @@ public class HomeFragment extends Fragment {
         EditText statusEditText = dialogView.findViewById(R.id.editTextStatus);
         EditText injuredEditText = dialogView.findViewById(R.id.editNguoibithuong);
         EditText fatalitiesEditText = dialogView.findViewById(R.id.editNguoichet);
+        ImageButton imageButton = dialogView.findViewById(R.id.imgacci);
 
         updateTimeTextView = dialogView.findViewById(R.id.editTextUpdateTime);
         updateTimeTextView.setText(getCurrentDateTime()); // Set current date time
@@ -136,17 +159,16 @@ public class HomeFragment extends Fragment {
         return sdf.format(new Date());
     }
 
-
     private void getLocation() {
         Log.d("HomeFragment", "Requesting location...");
 
-        // Kiểm tra xem đã có quyền ACCESS_FINE_LOCATION và ACCESS_COARSE_LOCATION được cấp hay chưa
         if (ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
                 ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
             Log.d("HomeFragment", "Location permissions granted");
 
-            // Quyền truy cập vị trí đã được cấp, tiến hành lấy vị trí
+            checkLocationServices();
+
             FusedLocationProviderClient fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext());
             fusedLocationClient.getLastLocation()
                     .addOnSuccessListener(requireActivity(), new OnSuccessListener<Location>() {
@@ -176,24 +198,13 @@ public class HomeFragment extends Fragment {
         } else {
             Log.e("HomeFragment", "Permission ACCESS_FINE_LOCATION or ACCESS_COARSE_LOCATION not granted");
             Toast.makeText(requireContext(), "Quyền truy cập vị trí bị từ chối", Toast.LENGTH_SHORT).show();
-
-            // Yêu cầu cả hai quyền truy cập vị trí nếu chưa được cấp
-            ActivityCompat.requestPermissions(requireActivity(),
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},
-                    LOCATION_PERMISSION_REQUEST_CODE);
         }
     }
 
-
-    public void handlePermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == LOCATION_PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Quyền truy cập vị trí đã được cấp, tiến hành lấy vị trí
-                getLocation();
-            } else {
-                // Quyền truy cập vị trí bị từ chối, thông báo cho người dùng
-                Toast.makeText(requireContext(), "Quyền truy cập vị trí bị từ chối", Toast.LENGTH_SHORT).show();
-            }
+    private void checkLocationServices() {
+        LocationManager locationManager = (LocationManager) requireContext().getSystemService(Context.LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            Toast.makeText(requireContext(), "Vui lòng bật dịch vụ GPS", Toast.LENGTH_SHORT).show();
         }
     }
 }

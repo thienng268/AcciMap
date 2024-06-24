@@ -15,7 +15,7 @@ public class Report {
         // Default constructor required for calls to DataSnapshot.getValue(Report.class)
     }
 
-    public Report(String tentainan, String ngaygio, String mucdo, int songuoibithuong, int songuoichet, Double kinhdo, Double vido, String rId) {
+    public Report(String tentainan, String ngaygio, String mucdo, int songuoibithuong, int songuoichet, Double kinhdo, Double vido, String image) {
         this.tentainan = tentainan;
         this.ngaygio = ngaygio;
         this.mucdo = mucdo;
@@ -23,7 +23,7 @@ public class Report {
         this.songuoichet = songuoichet;
         this.kinhdo = kinhdo;
         this.vido = vido;
-        this.rId = rId;
+        this.image = image;
     }
 
     public String getrId() {

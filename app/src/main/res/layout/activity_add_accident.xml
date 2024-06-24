@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@drawable/bb">
 
         <TextView
             android:id="@+id/textViewTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Tiêu đề:"
+
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <EditText
@@ -24,14 +28,25 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             android:hint="Nhập tiêu đề"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"/>
+            android:textColor="@color/black"
+            android:background="@drawable/input_bg"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:textColorHint="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/textViewUpdateTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Thời gian:"
+
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <TextView
@@ -41,8 +56,16 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
             android:hint="21/06/2024"
-            android:textColor="@android:color/black"
-            android:textSize="18sp"/>
+            android:textColor="@android:color/black"            android:background="@drawable/input_bg"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:textColorHint="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -55,9 +78,10 @@
                 android:id="@+id/textViewCoordinates"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="Tọa độ:"
-                android:textSize="20sp"
-                android:layout_gravity="center_vertical"/>
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/viewKinhDo"
@@ -67,7 +91,16 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="4dp"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:background="@drawable/input_bg"
+                android:textSize="18sp"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:textColorHint="@color/colorWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/viewVido"
@@ -77,7 +110,16 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginEnd="8dp"
                 android:textColor="@android:color/black"
-                android:textSize="18sp" />
+                android:background="@drawable/input_bg"
+                android:textSize="18sp"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:textColorHint="@color/colorWhite"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"/>
         </LinearLayout>
 
         <TextView
@@ -85,6 +127,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Mức độ:"
+            android:textColor="@color/white"
             android:textSize="20sp" />
 
         <EditText
@@ -96,12 +139,23 @@
             android:layout_marginBottom="16dp"
             android:hint="Nhập mức độ"
             android:textColor="@android:color/black"
-            android:textSize="18sp"/>
+            android:background="@drawable/input_bg"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:textColorHint="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/textNguoibithuong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
+            android:textColor="@color/white"
             android:text="Số người bị thương:"
             android:textSize="20sp" />
 
@@ -114,12 +168,22 @@
             android:layout_marginBottom="16dp"
             android:hint="Nhập số người bị thương"
             android:textColor="@android:color/black"
-            android:textSize="18sp"/>
+            android:background="@drawable/input_bg"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:textColorHint="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
             android:id="@+id/textNguoichet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:text="Số người thương vong:"
             android:textSize="20sp" />
 
@@ -132,14 +196,23 @@
             android:layout_marginBottom="16dp"
             android:hint="Nhập số người thương vong"
             android:textColor="@android:color/black"
-            android:textSize="18sp"/>
+            android:background="@drawable/input_bg"
+            android:textSize="18sp"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="10dp"
+            android:textColorHint="@color/colorWhite"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <ImageButton
             android:id="@+id/imgacci"
             android:layout_width="160dp"
             android:layout_height="160dp"
             android:layout_marginLeft="120dp"
-            android:src="@drawable/default_image" />
+            android:src="@drawable/outline_add_a_photo_24" />
 
     </LinearLayout>
 

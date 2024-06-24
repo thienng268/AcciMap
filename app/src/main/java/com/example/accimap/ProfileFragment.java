@@ -1,17 +1,22 @@
 package com.example.accimap;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 
 import com.example.accimap.models.User;
@@ -19,6 +24,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -85,6 +92,13 @@ public class ProfileFragment extends Fragment {
                 });
             }
         }
+        Button changePasswordButton = view.findViewById(R.id.change_password);
+        changePasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showChangePasswordDialog();
+            }
+        });
 
         avatarImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,6 +189,80 @@ public class ProfileFragment extends Fragment {
                     }
                 });
             }
+        }
+    }
+    private void showChangePasswordDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.change_password, null);
+
+        final EditText oldPassword = dialogView.findViewById(R.id.edit_passcode);
+        final EditText newPassword = dialogView.findViewById(R.id.edit_newpass);
+        final EditText confirmPassword = dialogView.findViewById(R.id.edit_confirmpass);
+        AppCompatButton completeButton = dialogView.findViewById(R.id.btn_complete);
+        AppCompatButton cancelButton = dialogView.findViewById(R.id.btn_cancel);
+
+        builder.setView(dialogView);
+        AlertDialog dialog = builder.create();
+
+        completeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String oldPass = oldPassword.getText().toString().trim();
+                String newPass = newPassword.getText().toString().trim();
+                String confirmPass = confirmPassword.getText().toString().trim();
+
+                if (oldPass.isEmpty()) {
+                    oldPassword.setError("Vui lòng nhập mật khẩu cũ");
+                } else if (newPass.isEmpty()) {
+                    newPassword.setError("Vui lòng nhập mật khẩu mới");
+                } else if (confirmPass.isEmpty()) {
+                    confirmPassword.setError("Vui lòng xác nhận mật khẩu mới");
+                } else if (!newPass.equals(confirmPass)) {
+                    confirmPassword.setError("Mật khẩu mới không trùng khớp");
+                } else {
+                    changePassword(dialog, oldPass, newPass);
+                }
+            }
+        });
+
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void changePassword(final AlertDialog dialog, String oldPassword, final String newPassword) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            String email = user.getEmail();
+            AuthCredential credential = EmailAuthProvider.getCredential(email, oldPassword);
+
+            user.reauthenticate(credential).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getContext(), "Cập nhật mật khẩu thành công!", Toast.LENGTH_SHORT).show();
+                                    dialog.dismiss();
+                                } else {
+                                    Toast.makeText(getContext(), "Cập nhật mật khẩu thất bại!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+                    } else {
+                        EditText oldPasswordEditText = dialog.findViewById(R.id.edit_passcode);
+                        oldPasswordEditText.setError("Mật khẩu cũ không đúng");
+                    }
+                }
+            });
         }
     }
 }
